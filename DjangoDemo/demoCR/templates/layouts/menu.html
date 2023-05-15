@@ -1,0 +1,49 @@
+
+{% load static %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href = "{% static 'styles/menu.css' %}" rel = "stylesheet">
+    <link href = "{% static 'styles/icons/fonts.css' %}" rel = "stylesheet">
+
+    {% block jquery %}
+
+    <script src = "{% static 'scripts/jquery-latest.js' %}"></script>
+    <script src = "{% static 'scripts/encabezado.js' %}"></script>
+
+    {% endblock %}
+
+</head>
+<body>
+
+    <header class = "menu">
+        <div class = "menu_bar">
+            <a href = "#" class = "b_menu"><span class = "icon-bars"></span> <div> <img src = "{% static 'assets/tas2.png' %}"> </div> </a>
+        </div>
+
+        <nav>
+
+            <ul>
+
+                <li><a href = "{% url 'home' %}"><span class = "icon-home"></span> Inicio </a></li>
+                <li><a href = "{% url 'c-rel' %}"><span class = "icon-user"></span> Relacional Crear </a></li>
+                <li><a href = "{% url 'c-norel' %}"><span class = "icon-check-square"></span> No Relacional Crear </a></li>
+                <li><a href = "{% url 'r-rel' %}"><span class = "icon-group"></span> Relacional Leer </a></li>
+                <li><a href = "{% url 'r-norel' %}"><span class = "icon-bar-chart"></span> No Relacional Leer </span></a></li>
+                
+            </ul>
+        </nav>
+    </header>
+    
+    {% block content %}
+    {% endblock %}
+
+
+</body>
+</html>
