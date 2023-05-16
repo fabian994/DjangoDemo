@@ -11,7 +11,7 @@ letras = RegexValidator(r'^[a-zA-Z " " éáíóúñÑÁÉÍÓÚ]*$', 'Solo se pu
 numeros = RegexValidator(r'^[0-9]*$', 'Solo se pueden ingresar numeros')
 matricula = RegexValidator(r'^[a-zA-Z0-9]*$', 'Solo se pueden ingresar numeros y letras')
 
-class cRelDBf(forms.Form):
+class cRelDBf(forms.Form):#Create form
     matricula = forms.CharField( max_length = 10, 
                             required = True, 
                             label = "Matricula",
