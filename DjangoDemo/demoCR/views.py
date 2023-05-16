@@ -18,6 +18,7 @@ import utils
 
 from .forms import *
 from .models import *
+
 # Create your views here.
 
 db = utils.get_db_handle("formDB")
@@ -80,11 +81,6 @@ def c_rel(request):
         return render(request, "writeRel.html", context)
     pass
 
-def r_rel(request):
-        lista_all = Student.objects.all()
-        student_get = Student.objects.get(age='35') 
-        lista_filter = Student.objects.filter(age='29')       
-        return render(request, 'readRelDB.html', {'li_all': lista_all, 'student_get': student_get, "li_filter": lista_filter})
         
 def c_NOrel(request):
     
@@ -136,8 +132,11 @@ def c_NOrel(request):
 
     return render(request,"writeNonRel.html", context)
     
-    
-def r_rel():
-    pass
+def r_rel(request):
+        lista_all = Student.objects.all()
+        student_get = Student.objects.get(age='35') 
+        lista_filter = Student.objects.filter(age='22')       
+        return render(request, 'readRelDB.html', {'li_all': lista_all, 'student_get': student_get, "li_filter": lista_filter})
+
 def r_NOrel():
     pass
