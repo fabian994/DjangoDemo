@@ -28,7 +28,52 @@ def home(request, *args, **kwargs):
 
     return render(request,"home.html")
 
-def c_rel():
+def c_rel(request):
+    print(request)
+    if request.method == "POST":
+        print("enter post")
+        c_relForm = cRelDBf(request.POST)
+        context = {"title": "Registro de usuarios", "form": c_relForm}
+
+        if c_relForm.is_valid():
+            print("FORM VALID!")
+
+            data = c_relForm.cleaned_data
+
+            print("data:\n", data)
+            #m = data["email"]
+            # print(usuario.objects.filter(mail="a01360000@tec.mx"))
+            if Student.objects.filter(matricula=data["matricula"]).exists():
+                print("Matricula existe")
+                messages.error(request, "Este correo ya fue usado")
+            else:
+                print("no existe")
+                try:
+                    print("create success")
+
+                    Student.objects.create(
+                        # id = unique_id(8),
+                        matricula=data["matricula"],
+                        name=data["name"],
+                        age=data["age"],
+                    )
+
+                    messages.success(request, "Datos guardados correctamente")
+
+                    return redirect("login")
+
+                except:
+                    print("creare failed")
+                    messages.error(request, "Error al guardar los datos")
+
+        return render(request, "writeRel.html", context)
+
+    else:
+        print("no post")
+        c_relForm = cRelDBf()
+        context = {"title": "Registro de Usuarios", "form": c_relForm}
+
+        return render(request, "writeRel.html", context)
     pass
 
 def c_NOrel():
