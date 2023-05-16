@@ -14,9 +14,13 @@ from datetime import datetime
 import string
 import random
 
+import utils
+
 from .forms import *
 from .models import *
 # Create your views here.
+
+db = utils.get_db_handle("formDB")
 
 
 def home(request, *args, **kwargs):
@@ -29,7 +33,7 @@ def home(request, *args, **kwargs):
     return render(request,"home.html")
 
 def c_rel(request):
-    # sourcery skip: hoist-statement-from-if, remove-redundant-pass
+    
     print(request)
     if request.method == "POST":
         print("enter post")
@@ -77,8 +81,57 @@ def c_rel(request):
         return render(request, "writeRel.html", context)
     pass
 
-def c_NOrel():
-    pass
+def c_NOrel(request):
+    
+    form = cNonRelDBf()
+    context = {
+        "form" : form,
+        "title" : "Registro de usuarios"
+    }
+
+    if request.method == "POST":
+        
+        form = cNonRelDBf(request.POST)
+        context = {
+            "form" : form,
+            "title" : "Registro de usuarios"
+        }
+        
+        print("enter post")
+        print(form.is_valid())
+        print(form.errors)
+        
+        if form.is_valid():
+            print("FORM VALID!")
+
+            data = form.cleaned_data
+
+            if db.users.find_one({"matricula": data["matricula"]}):
+                print("Matricula existe")
+                messages.error(request, "Esta matricula ya fue usada")
+                return render(request,"writeNonRel.html", context)
+
+            try: 
+                db.users.insert_one({
+                    "matricula" : data["matricula"],
+                    "name" : data["name"],
+                    "age" : data["age"]
+                })
+
+                print("create success")
+                messages.success(request, "Datos guardados correctamente")
+                return redirect("c-norel")
+
+            except Exception as e:
+                print("create failed")
+                messages.error(request, f"Error al guardar los datos: {e}")
+                return render(request,"writeNonRel.html", context)
+
+        return render(request,"writeNonRel.html", context)
+
+    return render(request,"writeNonRel.html", context)
+    
+    
 def r_rel():
     pass
 def r_NOrel():
