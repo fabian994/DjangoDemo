@@ -29,6 +29,7 @@ def home(request, *args, **kwargs):
     return render(request,"home.html")
 
 def c_rel(request):
+    # sourcery skip: hoist-statement-from-if, remove-redundant-pass
     print(request)
     if request.method == "POST":
         print("enter post")
@@ -46,25 +47,25 @@ def c_rel(request):
             if Student.objects.filter(matricula=data["matricula"]).exists():
                 print("Matricula existe")
                 messages.error(request, "Este correo ya fue usado")
-            else:
-                print("no existe")
-                try:
-                    print("create success")
+        
+            print("no existe")
+            try:
+                
+                Student.objects.create(
+                    # id = unique_id(8),
+                    matricula=data["matricula"],
+                    name=data["name"],
+                    age=data["age"],
+                )
 
-                    Student.objects.create(
-                        # id = unique_id(8),
-                        matricula=data["matricula"],
-                        name=data["name"],
-                        age=data["age"],
-                    )
+                messages.success(request, "Datos guardados correctamente")
+                print("create success")
 
-                    messages.success(request, "Datos guardados correctamente")
-
-                    return redirect("login")
-
-                except:
-                    print("creare failed")
-                    messages.error(request, "Error al guardar los datos")
+                return redirect("login")
+            
+            except Exception:
+                print("creare failed")
+                messages.error(request, "Error al guardar los datos")
 
         return render(request, "writeRel.html", context)
 
