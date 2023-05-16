@@ -79,7 +79,12 @@ def c_rel(request):
 
 def c_NOrel():
     pass
-def r_rel():
-    pass
+
+def r_rel(request):
+        lista_all = models.Student.objects.all()
+        student_get = models.Student.objects.get(age='21') 
+        lista_filter = models.Student.objects.filter(age='22')       
+        return render(request, 'readRelDB.html', {'li_all': lista_all, 'student_get': student_get, "li_filter": lista_filter})
+        
 def r_NOrel():
     pass
