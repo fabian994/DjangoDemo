@@ -39,24 +39,20 @@ def c_rel(request):
         print("enter post")
         c_relForm = cRelDBf(request.POST)
         context = {"title": "Registro de usuarios", "form": c_relForm}
-
+        #print(c_relForm)
         if c_relForm.is_valid():
             print("FORM VALID!")
 
             data = c_relForm.cleaned_data
 
             print("data:\n", data)
-            #m = data["email"]
-            # print(usuario.objects.filter(mail="a01360000@tec.mx"))
+            #Checks if key does not already exists in DB
             if Student.objects.filter(matricula=data["matricula"]).exists():
                 print("Matricula existe")
                 messages.error(request, "Este correo ya fue usado")
-        
-            print("no existe")
             try:
-                
+                #Creates records in table
                 Student.objects.create(
-                    # id = unique_id(8),
                     matricula=data["matricula"],
                     name=data["name"],
                     age=data["age"],
@@ -65,12 +61,15 @@ def c_rel(request):
                 messages.success(request, "Datos guardados correctamente")
                 print("create success")
 
-                return redirect("login")
+                return redirect("home")
             
             except Exception:
-                print("creare failed")
+                print("create failed")
                 messages.error(request, "Error al guardar los datos")
-
+        else:
+            #print(c_relForm.errors.as_data())
+            print('form no valid')
+            return render(request, "writeRel.html", context)
         return render(request, "writeRel.html", context)
 
     else:
@@ -81,6 +80,12 @@ def c_rel(request):
         return render(request, "writeRel.html", context)
     pass
 
+def r_rel(request):
+        lista_all = models.Student.objects.all()
+        student_get = models.Student.objects.get(age='21') 
+        lista_filter = models.Student.objects.filter(age='22')       
+        return render(request, 'readRelDB.html', {'li_all': lista_all, 'student_get': student_get, "li_filter": lista_filter})
+        
 def c_NOrel(request):
     
     form = cNonRelDBf()
