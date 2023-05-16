@@ -138,5 +138,11 @@ def r_rel(request):
         lista_filter = Student.objects.filter(age='22')       
         return render(request, 'readRelDB.html', {'li_all': lista_all, 'student_get': student_get, "li_filter": lista_filter})
 
-def r_NOrel():
-    pass
+def r_NOrel(request):
+    users = db.users.find() 
+
+    context = {
+        'users': users  
+    }
+
+    return render(request, 'readNoRelDB.html', context)
