@@ -14,7 +14,6 @@ class cRelDBf(forms.Form):
     matricula = forms.CharField( max_length = 10, 
                             required = True, 
                             label = "Matricula",
-                            validators=[letras],
                             error_messages={
                                 "required": "No puede estar vacío",
                             },
