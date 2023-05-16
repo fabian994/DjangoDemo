@@ -84,6 +84,7 @@ def c_rel(request):
         return render(request, "writeRel.html", context)
     pass
 
+<<<<<<< HEAD
 
 def r_rel(request):
     lista_all = Student.objects.all()
@@ -96,6 +97,9 @@ def r_rel(request):
     )
 
 
+=======
+        
+>>>>>>> main
 def c_NOrel(request):
     form = cNonRelDBf()
     context = {"form": form, "title": "Registro de usuarios"}
@@ -138,6 +142,7 @@ def c_NOrel(request):
 
         return render(request, "writeNonRel.html", context)
 
+<<<<<<< HEAD
     return render(request, "writeNonRel.html", context)
 
 
@@ -154,3 +159,21 @@ def r_NOrel(request):
         "readNoRelDB.html",
         {"li_all": lista_all, "student_get": student_get, "li_filter": lista_filter},
     )
+=======
+    return render(request,"writeNonRel.html", context)
+    
+def r_rel(request):
+        lista_all = Student.objects.all()
+        student_get = Student.objects.get(age='35') 
+        lista_filter = Student.objects.filter(age='22')       
+        return render(request, 'readRelDB.html', {'li_all': lista_all, 'student_get': student_get, "li_filter": lista_filter})
+
+def r_NOrel(request):
+    users = db.users.find() 
+
+    context = {
+        'users': users  
+    }
+
+    return render(request, 'readNoRelDB.html', context)
+>>>>>>> main
