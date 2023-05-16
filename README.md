@@ -37,9 +37,12 @@
 
 1. Hacer html y configuración de URLs
 2. Llamar la función, obtener los datos en la base de datos con *get()*, *all()*, *filter()* y pasa los datos a la plantilla:
-    -**get():** obtener un único registro que cumpla con las condiciones especificadas. 
+    -**get():** obtener un único registro que cumpla con las condiciones especificadas.
+
     -**all():** obtener todos los registros de una tabla.
+
     -**filter():** obtener un conjunto de registros que cumplan con las condiciones especificadas.
+
 3. Pasar los datos a la html para mostrarlo
 
 
@@ -48,7 +51,10 @@
 1. conectar base de datos mongo
 2. Hacer html y configuración de URLs
 3. Llamar la función (obtener los datos en MongoDB con *find()* y pasa los datos usuarios a la plantilla):
+
     -**find_one():** recuperar un único documento que cumpla con los criterios de búsqueda especificados.
+
     -**find():** realizar consultas y recuperar documentos de una colección. (sin poner condición obtiene todos los registro de una colección)
+
 4. Pasar los datos a la html para mostrarlo
 
