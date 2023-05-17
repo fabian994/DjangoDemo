@@ -1,18 +1,6 @@
 from django.shortcuts import render
-from django.contrib.auth import logout, login
-from django.http import FileResponse, HttpResponse
 from django.shortcuts import redirect
-from django.contrib.auth.decorators import login_required
-from django.contrib.auth.forms import AuthenticationForm
-from django.contrib.auth import authenticate
-from django.contrib.auth.models import User
 from django.contrib import messages
-from django.urls import reverse
-from django.forms import formset_factory
-from bson import ObjectId
-from datetime import datetime
-import string
-import random
 
 import utils
 
