@@ -147,7 +147,7 @@ def r_NOrel(request):
 def r_rel(request):
         lista_all = Student.objects.all()
         student_get = Student.objects.get(age='19') 
-        lista_filter = Student.objects.filter(age='29')       
+        lista_filter = Student.objects.filter(age='23')       
         return render(request, 'readRelDB.html', {'li_all': lista_all, 'student_get': student_get, "li_filter": lista_filter})
 
 # def r_NOrel(request):
