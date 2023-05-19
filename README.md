@@ -1,9 +1,19 @@
 # DjangoDemo
 
+Documentacion oficial de Django: https://docs.djangoproject.com/en/4.2/
+
 ## Crear instancia de Django
 1. Instalar Django mediante PIP `$ pip install django-admin`
 2. Abrir el directorio donde se encuentra el proyecto de Django, el nivel del directorio debe ser el mismo de donde se encuentra el archivo manage.py
 3. Ejecutar el servidor `$ python manage.py runserver`
+
+## Crear Aplicacion de Django
+
+1. Crear App mediante `$ python manage.py startapp polls`
+2. Añadir las aplicacion a settings.py, en la seccion de `INSTALLED_APPS`, usando el nombre de la aplicacion en comillas.
+3. Crear archivo `urls.py` en el folder de la aplicacion
+4. Dentro del archivo `urls.py` dentro de la carpeta del proyecto de Django, incluir el archivo `urls.py` de la aplicacion de la siguiente manera: `path('', include('appName.urls')),`
+5. Dentro del folder de la app, crear carpetas `static` y `templates` donde se guardaran archivos de Js y Css, en el segundo se guardaran todos los archivos de HTML
 
 ## Instalacion de MongoDB
 1. Descargar MongoDB Community Edition
@@ -12,15 +22,17 @@
 4. Verificar ingresando a localhost:27017
 
 ## Escribir BD Relacional
-1. Crear modelo
+1. Crear modelo en el archivo `models.py` dentro del folder de la aplicacion
 2. Hacer migraciones con `$ python3 manage.py makemigrations`
 3. Migrar los cambios a la base de datos con `$ python3 manage.py migrate`
-4. Crear forma
+4. Crear archivo `forms.py` en el folder de la aplicacion y [crear forma](https://docs.djangoproject.com/en/4.2/topics/forms/) dentro del archivo.
+5. Importar formas y modelos en el archivo `views.py` dentro del folder de la app.
+6. [Crear views](https://docs.djangoproject.com/en/4.2/topics/http/views/) dentro del archivo `views.py`
 5. Llamar a la clase de la forma
 6. Esperar una respuesta POST
 7. Validar el formulario con los datos introducidos
 8. Verificar que el ID no este duplicado
-9. Crear registro en la tabla
+9. Crear registro en la tabla usando el modelo atraves de `modelName.objects.create(data)`
 10. Desplegar mensaje
 
 ## Escribir BD No Relacional
@@ -30,7 +42,7 @@
 3. Esperar una respuesta POST
 4. Validar el formulario con los datos introducidos
 5. Verificar que el ID no este duplicado
-6. Insertar el dato en la colección y con el nombre del documento correspondiente (JSON ObjectID)
+6. Insertar el dato en la colección y con el nombre del documento correspondiente (JSON ObjectID) a traves de `db.collectionName.insert_one(dictionaryWithData)`
 7. Desplegar el mensaje correspondiente
 
 ## Leer BD Relacional
