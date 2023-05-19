@@ -36,7 +36,7 @@ Documentacion oficial de Django: https://docs.djangoproject.com/en/4.2/
 10. Desplegar mensaje
 
 ## Escribir BD No Relacional
-
+1. Instalar Pymongo `$ pip install pymongo`
 1. Crear el formulario
 2. Llamar a la clase del formulario
 3. Esperar una respuesta POST
